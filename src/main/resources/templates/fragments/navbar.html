@@ -1,0 +1,159 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <div class="navbar-brand text-center">
+            <a href="#">
+                <img src="/images/logo.png" class="mx-auto logo" alt="logo"><br/>
+            </a>
+            <a href="#" class="font-weight-bold nav-link text-white">
+                Amazono
+            </a>
+        </div>
+        <div class="col-sm-8 mt-1">
+            <div>
+                <form class="form-inline my-2 my-lg-0">
+                    <div class="input-group w-100">
+                        <div class="input-group-prepend">
+                            <label for="categorySelect"></label>
+                            <select class="form-control input-group-text" id="categorySelect">
+                                <option class="input-group-text">All Categories</option>
+                                <option class="input-group-text">Cat 1</option>
+                                <option class="input-group-text">Cat 2</option>
+                                <option class="input-group-text">Cat 3</option>
+                            </select>
+                        </div>
+                        <input type="search" class="form-control" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-warning" value="Search">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-2 ml-3">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Order</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarAccountDropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarAccountDropdownMenuLink">
+                        <a class="dropdown-item" style="cursor: pointer" data-toggle="modal" data-target="#loginModal">
+                            Sign in
+                        </a>
+                        <a class="dropdown-item" data-toggle="modal" data-target="#signUpModal">Sign up</a>
+                    </div>
+                    <!--login modal-->
+                    <div class="modal fade mx-auto text-dark-light" style="max-width: 380px" id="loginModal" tabindex="-1" role="dialog"
+                         aria-labelledby="loginModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-dark  align-content-center" id="loginModalLongTitle">
+                                        Login Form
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form class="mx-2">
+                                    <div class="modal-body p-1">
+                                        <div class="form-group">
+                                            <label for="user-email">Email address</label>
+                                            <input type="email" class="form-control" id="user-email"
+                                                   placeholder="Enter email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="user-password">Password</label>
+                                            <input type="password" class="form-control" id="user-password"
+                                                   placeholder="Password">
+                                        </div>
+                                        <a href="#" class="text-warning">Forget password ?</a>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-warning">Login</button>
+                                        <button type="button" class="btn bg-dark-light" data-dismiss="modal">Close
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--signup modal-->
+                    <div class="modal fade mx-auto text-dark-light" style="max-width: 380px" id="signUpModal" tabindex="-1" role="dialog"
+                         aria-labelledby="loginModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-dark align-content-center" id="signUpModalModalLongTitle">
+                                        Sign Up Form
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form class="mx-2">
+                                    <div class="modal-body p-1">
+                                        <div class="form-group">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" id="username"
+                                                   placeholder="Enter Username">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email address</label>
+                                            <input type="email" class="form-control" id="email"
+                                                   placeholder="Enter email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password"
+                                                   placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="passwordConfirm"> Confirm password</label>
+                                            <input type="password" class="form-control" id="passwordConfirm"
+                                                   placeholder="Confirm password">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-warning">Submit</button>
+                                        <button type="button" class="btn bg-dark-light" data-dismiss="modal">Close
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        Cart
+                    </a>
+
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>

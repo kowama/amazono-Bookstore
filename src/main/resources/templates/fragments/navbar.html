@@ -1,14 +1,26 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+<!--
+  ~ Copyright (c) 2019
+  ~ Created By : kowama
+  ~ Date :  5/30/2019
+  ~ Time : 10 : 22
+  ~ Project : bookstore
+  ~ Class : navbar.html
+  ~ Last modified : 5/30/19 10:20 AM
+  -->
+
+<nav xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+     xmlns:th="http://www.thymeleaf.org"
+     class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+            aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <div class="collapse navbar-collapse" id="navbarToggler">
         <div class="navbar-brand text-center">
-            <a href="#">
+            <a href="/">
                 <img src="/images/logo.png" class="mx-auto logo" alt="logo"><br/>
             </a>
-            <a href="#" class="font-weight-bold nav-link text-white">
+            <a href="/" class="font-weight-bold nav-link text-white">
                 Amazono
             </a>
         </div>
@@ -50,7 +62,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Order</a>
                 </li>
-                <li class="nav-item dropdown">
+                <!---user not logged -->
+                <li sec:authorize="isAnonymous()" class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarAccountDropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Account
@@ -62,7 +75,8 @@
                         <a class="dropdown-item" data-toggle="modal" data-target="#signUpModal">Sign up</a>
                     </div>
                     <!--login modal-->
-                    <div class="modal fade mx-auto text-dark-light" style="max-width: 380px" id="loginModal" tabindex="-1" role="dialog"
+                    <div class="modal fade mx-auto text-dark-light" style="max-width: 380px" id="loginModal"
+                         tabindex="-1" role="dialog"
                          aria-labelledby="loginModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -74,20 +88,27 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form class="mx-2">
+                                <form class="mx-2" th:action="@{/signin}" method="post">
                                     <div class="modal-body p-1">
                                         <div class="form-group">
-                                            <label for="user-email">Email address</label>
-                                            <input type="email" class="form-control" id="user-email"
-                                                   placeholder="Enter email">
+                                            <label for="user-username">username</label>
+                                            <input type="text" class="form-control" id="user-username"
+                                                   name="username" placeholder="Enter email">
                                         </div>
                                         <div class="form-group">
                                             <label for="user-password">Password</label>
                                             <input type="password" class="form-control" id="user-password"
-                                                   placeholder="Password">
+                                                   name="password" placeholder="Password">
                                         </div>
-                                        <a href="#" class="text-warning">Forget password ?</a>
+                                        <div class="form-group">
+                                            <a href="#" class="text-warning"> Forget password ?
+                                            </a><br>
+                                            <label th:if="${param.error}" class="text-danger">
+                                                Invalid username and password.
+                                            </label>
+                                        </div>
                                     </div>
+
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-warning">Login</button>
                                         <button type="button" class="btn bg-dark-light" data-dismiss="modal">Close
@@ -99,39 +120,67 @@
                         </div>
                     </div>
                     <!--signup modal-->
-                    <div class="modal fade mx-auto text-dark-light" style="max-width: 380px" id="signUpModal" tabindex="-1" role="dialog"
+                    <div class="modal fade mx-auto text-dark-light" style="max-width: 380px" id="signUpModal"
+                         tabindex="-1" role="dialog"
                          aria-labelledby="loginModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title text-dark align-content-center" id="signUpModalModalLongTitle">
+                                    <h5 class="modal-title text-dark align-content-center"
+                                        id="signUpModalModalLongTitle">
                                         Sign Up Form
                                     </h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form class="mx-2">
+                                <form class="mx-2" th:action="@{/signup}" th:object="${user}" method="post">
                                     <div class="modal-body p-1">
                                         <div class="form-group">
                                             <label for="username">Username</label>
-                                            <input type="text" class="form-control" id="username"
+                                            <input type="text" class="form-control border-warning" id="username"
+                                                   th:classappend="${#fields.hasErrors('username')} ? is-invalid : is-valid"
+                                                   th:field="*{username}"
                                                    placeholder="Enter Username">
+                                            <div th:if="${#fields.hasErrors('username')}" class="invalid-feedback"
+                                                 th:errors="*{username}">
+                                                Email error
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Email address</label>
-                                            <input type="email" class="form-control" id="email"
+                                            <input type="email" class="form-control border-warning" id="email"
+                                                   th:classappend="${#fields.hasErrors('email')} ? is-invalid : is-valid"
+                                                   th:field="*{email}"
                                                    placeholder="Enter email">
+                                            <div th:if="${#fields.hasErrors('email')}" class="invalid-feedback"
+                                                 th:errors="*{email}">
+                                                Email error
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Password</label>
-                                            <input type="password" class="form-control" id="password"
+                                            <input type="password" class="form-control border-warning"
+                                                   th:classappend="${#fields.hasErrors('password')} ? is-invalid : is-invalid"
+                                                   th:field="*{password}"
+                                                   id="password"
                                                    placeholder="Password">
+                                            <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback"
+                                                 th:errors="*{password}">
+                                                Password error
+                                            </div>
+
                                         </div>
                                         <div class="form-group">
                                             <label for="passwordConfirm"> Confirm password</label>
-                                            <input type="password" class="form-control" id="passwordConfirm"
+                                            <input type="password" class="form-control border-warning"
+                                                   id="passwordConfirm"
+                                                   th:classappend="${#fields.hasErrors('password')} ? is-invalid : is-invalid"
                                                    placeholder="Confirm password">
+                                            <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback"
+                                                 th:errors="*{password}">
+                                                Password error
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -145,9 +194,29 @@
                         </div>
                     </div>
                 </li>
+                <!--else user is logged--->
+                <li sec:authorize="isAuthenticated()" class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <label sec:authentication="name">My Account</label>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" th:href="@{/profile}">My Profile</a>
+                        <a class="dropdown-item " th:href="@{/Order}">My Order</a>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item">
+                            <form class="form-inline p-0" form-method="post" th:action="@{/logout}">
+                                <input type="submit" value="Logout" class="w-100 h-50 btn btn-outline-danger"/>
+                            </form>
+                        </div>
+
+                    </div>
+                </li>
+
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="fas fa-shopping-cart"></i>
+                        <span class="badge badge-light">9</span>
                         Cart
                     </a>
 
@@ -156,4 +225,5 @@
 
         </div>
     </div>
+
 </nav>

@@ -1,0 +1,41 @@
+<!--
+  ~ Copyright (c) 2019
+  ~ Created By : kowama 
+  ~ Date :  5/30/2019
+  ~ Time : 13 : 21
+  ~ Project : bookstore	
+  ~ Class : profile.html
+  ~ Last modified : 5/30/19 1:21 PM
+  -->
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <title>Profile</title>
+    <div th:replace="fragments/head"></div>
+</head>
+
+<body>
+<div class="wrapper">
+    <header>
+        <nav th:insert="fragments/navbar"></nav>
+    </header>
+    <main>
+        <table>
+            <tr>
+                <td>Username</td>
+                <td><span sec:authentication="name"></span></td>
+            </tr>
+            <tr>
+                <td>Authorities</td>
+                <td><span sec:authentication="principal.authorities"></span></td>
+            </tr>
+        </table>
+    </main>
+
+</div>
+</body>
+</html>

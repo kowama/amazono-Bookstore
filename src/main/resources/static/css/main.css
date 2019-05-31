@@ -1,3 +1,13 @@
+/*
+ * Copyright (c) 2019
+ * Created By : kowama
+ * Date :  5/30/2019
+ * Time : 10 : 22
+ * Project : bookstore
+ * Class : main.css
+ * Last modified : 5/30/19 10:20 AM
+ */
+
 .wrapper {
     width: 100%;
     height: 100%;
@@ -19,13 +29,19 @@
     background: #232F3E !important;
     color: #FFFFFF !important;
 }
-.text-dark-light{
+
+.text-dark-light {
     color: #232F3E !important;
 }
 
 .bg-dark-light {
     background: #232F3E !important;
     color: #FFFFFF !important;
+}
+
+.bg-orange {
+    background-color: orange !important;
+    color: #232F3E !important;
 }
 
 .card .reveal {
@@ -40,6 +56,14 @@
     opacity: 10;
     transition: opacity 1s ease;
     text-align: center;
+}
+
+dropdown-menu .dropdown-item {
+    color: #92999F !important;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    color: blue !important;
 }
 
 /**input hover border**/

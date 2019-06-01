@@ -1,0 +1,74 @@
+<!--
+  ~ Copyright (c) 2019
+  ~ Created By : kowama 
+  ~ Date :  6/1/2019
+  ~ Time : 10 : 51
+  ~ Project : bookstore	
+  ~ Class : home.html
+  ~ Last modified : 6/1/19 10:50 AM
+  -->
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+    <title>Admin Panel | Home</title>
+    <div th:replace="fragments/head"></div>
+    <style>
+        nav .list-group-item {
+            background-color: inherit;
+            color: inherit;
+        }
+
+        .hide {
+            width: 0 !important;
+
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrapper" id="wrapper">
+    <div class="row p-0 m-0">
+        <!-- sidebar -->
+        <div class="bg-dark col-md-2 p-2 hide" id="sidebar-wrapper" style="min-height: 800px">
+            <img th:src="@{/images/logo.png}" class="w-25" src="/static/images/logo.png" alt="Ours logo">
+            <b>Amazono Bookstore</b>
+            <div class="sidebar-heading text-center mb-2 border">kowama | ADMIN</div>
+            <nav id="sidebar-nav" class="list-group">
+                <a href="#" class="list-group-item">Dashboard</a>
+                <a href="#" class="list-group-item">Shortcuts</a>
+                <a href="#" class="list-group-item">Overview</a>
+                <a href="#" class="list-group-item">Events</a>
+                <a href="#" class="list-group-item">Profile</a>
+                <a href="#" class="list-group-item">Status</a>
+            </nav>
+        </div>
+        <!-- End of sidebar -->
+        <!-- main Content -->
+        <div class="col-md-10 p-0" style="min-height: 800px">
+            <!-- Header -->
+            <header class="bg-primary">
+                <h1>Page Header</h1>
+            </header>
+            <!-- End of Header -->
+            <main>
+            </main>
+
+        </div>
+        <!-- End of main content -->
+
+    </div>
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#sidebar-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+</div>
+</body>
+</html>

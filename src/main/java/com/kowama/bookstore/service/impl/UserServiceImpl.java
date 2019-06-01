@@ -16,8 +16,12 @@ import com.kowama.bookstore.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.logging.Logger;
+
 @Service
 public class UserServiceImpl implements UserService {
+    private Logger LOG = Logger.getLogger(UserServiceImpl.class.getName());
+
     private final UserRepository _userRepository;
     private final PasswordEncoder _passwordEncoder;
 
@@ -29,7 +33,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public User create(User user) throws IllegalArgumentException {
         if (_userRepository.findByUsername(user.getUsername()) != null) {
-            throw new IllegalArgumentException("Username Already exist");
+            LOG.warning("* Username already exist"+user.getUsername());
+            throw new IllegalArgumentException("* Username already exist");
+        }
+        if (_userRepository.findByEmail(user.getEmail()) != null) {
+            LOG.warning("* Email already exist"+user.getEmail());
+            throw new IllegalArgumentException("* Email already exist");
         }
         user.setPassword(_passwordEncoder.encode(user.getPassword()));
 

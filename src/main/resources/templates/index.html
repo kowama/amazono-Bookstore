@@ -4,7 +4,7 @@
   ~ Date :  5/30/2019
   ~ Time : 10 : 22
   ~ Project : bookstore
-  ~ Class : index.html
+  ~ Class : home.html
   ~ Last modified : 5/30/19 10:20 AM
   -->
 
@@ -16,13 +16,13 @@
     <title>Home</title>
     <div th:replace="fragments/head"></div>
 </head>
-<body>.
+<body>
 <div class="wrapper">
     <header>
 
         <nav th:replace="fragments/navbar"></nav>
         <!--alert messages -->
-        <div sec:authorize="isAuthenticated()" th:if="${param.login}" class="container-fluid my-1">
+        <div sec:authorize="isAuthenticated()" th:if="${#request.getParameter('login')}" class="container-fluid my-1">
             <div class="alert alert-success alert-dismissible fade show m-auto text-center"
                  role="alert">
                 You have successfully <strong>Login</strong>
@@ -31,7 +31,7 @@
                 </button>
             </div>
         </div>
-        <div sec:authorize="isAnonymous()" th:if="${param.logout}" class="container-fluid my-1">
+        <div th:if="${#request.getParameter('logout')}" class="container-fluid my-1">
             <div class="alert alert-warning bg-orange-light alert-dismissible fade show m-auto text-center"
                  role="alert">
                 You have successfully <strong>Logout</strong>
@@ -53,22 +53,34 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="/images/carousel-img-0.jpg" class="d-block w-100" alt="carousel image 0">
+                        <img th:src="@{/images/carousel-img-0.jpg}"
+                             src="/static/images/carousel-img-0.jpg"
+                             class="d-block w-100" alt="carousel image 0">
                     </div>
                     <div class="carousel-item">
-                        <img src="/images/carousel-img-1.jpg" class="d-block w-100" alt="carousel image 1">
+                        <img th:src="@{/images/carousel-img-1.jpg}"
+                             src="/static/images/carousel-img-1.jpg"
+                             class="d-block w-100" alt="carousel image 1">
                     </div>
                     <div class="carousel-item">
-                        <img src="/images/carousel-img-2.jpg" class="d-block w-100" alt="carousel image 2">
+                        <img th:src="@{/images/carousel-img-2.jpg}"
+                             src="/static/images/carousel-img-2.jpg"
+                             class="d-block w-100" alt="carousel image 2">
                     </div>
                     <div class="carousel-item">
-                        <img src="/images/carousel-img-3.jpg" class="d-block w-100" alt="carousel image 3">
+                        <img th:src="@{/images/carousel-img-3.jpg}"
+                             src="/static/images/carousel-img-3.jpg"
+                             class="d-block w-100" alt="carousel image 3">
                     </div>
                     <div class="carousel-item">
-                        <img src="/images/carousel-img-4.jpg" class="d-block w-100" alt="carousel image 4">
+                        <img th:src="@{/images/carousel-img-4.jpg}"
+                             src="/static/images/carousel-img-4.jpg"
+                             class="d-block w-100" alt="carousel image 4">
                     </div>
                     <div class="carousel-item">
-                        <img src="/images/carousel-img-5.jpg" class="d-block w-100" alt="carousel image 5">
+                        <img th:src="@{/images/carousel-img-5.jpg}"
+                             src="/static/images/carousel-img-5.jpg"
+                             class="d-block w-100" alt="carousel image 5">
                     </div>
 
                 </div>
@@ -88,7 +100,9 @@
             <h3 class="font-weight-bold">Best sellers</h3>
             <div class="card-group">
                 <div class="card" style="max-width: 200px">
-                    <img src="/images/books/0.jpg" class="card-img-top p-2" alt="...">
+                    <img src="/static/images/books/0.jpg"
+                         th:src="@{/images/books/0.jpg}"
+                         class="card-img-top p-2" alt="...">
                     <div class="card-body ">
                         <div class="price text-success font-weight-bold"><h5 class="mt-1">$125</h5></div>
                         <p class="card-text small">This is a wider card with supporting text below as a natural lead-in
@@ -107,23 +121,18 @@
     <footer>
         <div th:replace="fragments/footer"></div>
     </footer>
-
+    <!--/*@thymesVar id="signUpError" type="java.lang.String"*/-->
+    <script th:if="${signUpError}" type="text/javascript">
+        $(window).on('load', function () {
+            $('#signUpModal').modal('show');
+        });
+    </script>
+    <script th:if="${#request.getParameter('error')}" type="text/javascript">
+        $(window).on('load', function () {
+            $('#loginModal').modal('show');
+        });
+    </script>
 </div>
 
-<script src="/webjars/jquery/3.0.0/jquery.min.js"></script>
-
-<script src="/webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
-<script type="text/javascript" th:if="${singUpErrors}">
-    $(window).on('load', function () {
-        $('#signUpModal').modal('show');
-    });
-</script>
-<script type="text/javascript" th:if="${param.error}">
-    $(window).on('load', function () {
-        $('#loginModal').modal('show');
-    });
-</script>
-</div>
 </body>
 </html>

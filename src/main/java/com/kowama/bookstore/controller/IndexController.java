@@ -14,30 +14,31 @@ import com.kowama.bookstore.domain.User;
 import com.kowama.bookstore.service.RoleService;
 import com.kowama.bookstore.service.UserService;
 import com.kowama.bookstore.utils.RoleName;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 import java.util.logging.Logger;
 
 @Controller
-public class HomeController {
-    private Logger LOG = Logger.getLogger(HomeController.class.getName());
+public class IndexController {
+    private Logger LOG = Logger.getLogger(IndexController.class.getName());
 
     private final UserService _userService;
     private final RoleService _roleService;
 
-    @Autowired
-    public HomeController(UserService _userService, RoleService roleService) {
-        this._userService = _userService;
-        this._roleService = roleService;
+    public IndexController(UserService userService, RoleService roleService) {
+        _userService = userService;
+        _roleService = roleService;
     }
 
     @RequestMapping("/")
-    public String index(Model model)  {
+    public String index(Model model) {
         model.addAttribute("user", new User());
         return "index";
 
@@ -51,23 +52,28 @@ public class HomeController {
     @PostMapping("/signup")
     public String singUp(@ModelAttribute @Valid User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("singUpErrors", true);
             LOG.info("validation errors for " + user.toString());
-
+            model.addAttribute("signUpError", "* Information validation error");
             return "index";
         }
         try {
             user.addRole(_roleService.findByName(RoleName.USER));
             _userService.create(user);
         } catch (Exception e) {
-            model.addAttribute("error-msg", e.getMessage());
+            model.addAttribute("signUpError", e.getMessage());
             LOG.info(e.getMessage());
             return "index";
         }
 
-
         model.addAttribute("user", user);
         return "members/profile";
+    }
+
+    @GetMapping("/forget-password")
+    public String forgetPassword(Model model) {
+        model.addAttribute("user", new User());
+        return "passwordReset";
+
     }
 
 }

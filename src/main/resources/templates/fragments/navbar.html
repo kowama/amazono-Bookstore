@@ -18,7 +18,8 @@
     <div class="collapse navbar-collapse" id="navbarToggler">
         <div class="navbar-brand text-center">
             <a href="/">
-                <img src="/images/logo.png" class="mx-auto logo" alt="logo"><br/>
+                <img th:src="@{/images/logo.png}"
+                     src="/static/images/logo.png" class="mx-auto logo" alt="logo"><br/>
             </a>
             <a href="/" class="font-weight-bold nav-link text-white">
                 Amazono
@@ -93,17 +94,19 @@
                                         <div class="form-group">
                                             <label for="user-username">username</label>
                                             <input type="text" class="form-control" id="user-username"
-                                                   name="username" placeholder="Enter email">
+                                                   required
+                                                   name="username" placeholder="Enter username">
                                         </div>
                                         <div class="form-group">
                                             <label for="user-password">Password</label>
                                             <input type="password" class="form-control" id="user-password"
-                                                   name="password" placeholder="Password">
+                                                   required
+                                                   name="password" placeholder="Enter password">
                                         </div>
                                         <div class="form-group">
-                                            <a href="#" class="text-warning"> Forget password ?
+                                            <a th:href="@{/forget-password}" class="text-warning"> Forget password ?
                                             </a><br>
-                                            <label th:if="${param.error}" class="text-danger">
+                                            <label th:if="${#request}" class="text-danger">
                                                 Invalid username and password.
                                             </label>
                                         </div>
@@ -134,12 +137,15 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form class="mx-2" th:action="@{/signup}" th:object="${user}" method="post">
+                                <!--/*@thymesVar id="user" type="com.kowama.bookstore.domain.User"*/-->
+                                <form class="mx-2" name="signUpForm" onsubmit=" return validateSignUpForm()"
+                                      th:action="@{/signup}" th:object="${user}" method="post">
                                     <div class="modal-body p-1">
                                         <div class="form-group">
                                             <label for="username">Username</label>
-                                            <input type="text" class="form-control border-warning" id="username"
-                                                   th:classappend="${#fields.hasErrors('username')} ? is-invalid : is-valid"
+                                            <input type="text" class="form-control " id="username"
+                                                   required
+                                                   th:classappend="${#fields.hasErrors('username')} ?'is-invalid': 'is-valid'"
                                                    th:field="*{username}"
                                                    placeholder="Enter Username">
                                             <div th:if="${#fields.hasErrors('username')}" class="invalid-feedback"
@@ -149,8 +155,9 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="email">Email address</label>
-                                            <input type="email" class="form-control border-warning" id="email"
-                                                   th:classappend="${#fields.hasErrors('email')} ? is-invalid : is-valid"
+                                            <input type="email" class="form-control " id="email"
+                                                   required
+                                                   th:classappend="${#fields.hasErrors('email')}? 'is-invalid' : 'is-valid'"
                                                    th:field="*{email}"
                                                    placeholder="Enter email">
                                             <div th:if="${#fields.hasErrors('email')}" class="invalid-feedback"
@@ -160,11 +167,13 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="password">Password</label>
-                                            <input type="password" class="form-control border-warning"
-                                                   th:classappend="${#fields.hasErrors('password')} ? is-invalid : is-invalid"
+                                            <input type="password"
+                                                   required minlength="6" maxlength="64"
+                                                   class="form-control"
+                                                   th:classappend="${#fields.hasErrors('password')}? 'is-invalid' : 'is-valid'"
                                                    th:field="*{password}"
                                                    id="password"
-                                                   placeholder="Password">
+                                                   placeholder="Enter password">
                                             <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback"
                                                  th:errors="*{password}">
                                                 Password error
@@ -173,14 +182,19 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="passwordConfirm"> Confirm password</label>
-                                            <input type="password" class="form-control border-warning"
-                                                   id="passwordConfirm"
-                                                   th:classappend="${#fields.hasErrors('password')} ? is-invalid : is-invalid"
+                                            <input type="password"
+                                                   required minlength="6" maxlength="64"
+                                                   class="form-control" id="passwordConfirm"
+                                                   th:classappend="${#fields.hasErrors('password')}? 'is-invalid' : 'is-valid'"
                                                    placeholder="Confirm password">
                                             <div th:if="${#fields.hasErrors('password')}" class="invalid-feedback"
                                                  th:errors="*{password}">
                                                 Password error
                                             </div>
+                                        </div>
+                                        <!--/*@thymesVar id="signUpError" type="java.lang.String"*/-->
+                                        <div th:if="${signUpError}" class="form-group alert alert-warning p-1">
+                                            <label th:text="${signUpError}" class="p-0 m-0"></label>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -205,7 +219,7 @@
                         <a class="dropdown-item " th:href="@{/Order}">My Order</a>
                         <div class="dropdown-divider"></div>
                         <div class="dropdown-item">
-                            <form class="form-inline p-0" form-method="post" th:action="@{/logout}">
+                            <form class="form-inline p-0" method="post" th:action="@{/logout}">
                                 <input type="submit" value="Logout" class="w-100 h-50 btn btn-outline-danger"/>
                             </form>
                         </div>
@@ -224,6 +238,18 @@
             </ul>
 
         </div>
+        <script>
+            function validateSignUpForm() {
+                if (document.forms["signUpForm"]["password"].value !== document.forms["signUpForm"]["passwordConfirm"].value) {
+
+                    window.alert("password and password confirm mismatch");
+                    return false;
+                }
+
+                return true;
+
+            }
+        </script>
     </div>
 
 </nav>

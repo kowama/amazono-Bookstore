@@ -17,6 +17,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -61,6 +62,21 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles = new HashSet<>();
+
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private ShoppingCart shoppingCart;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<UserShipping> userShippingList;
+
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<UserPayment> userPaymentList;
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orderList;
+
 
     public User() {
 
@@ -151,6 +167,37 @@ public class User {
         this.roles = roles;
     }
 
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
+    }
+
+    public List<UserShipping> getUserShippingList() {
+        return userShippingList;
+    }
+
+    public void setUserShippingList(List<UserShipping> userShippingList) {
+        this.userShippingList = userShippingList;
+    }
+
+    public List<UserPayment> getUserPaymentList() {
+        return userPaymentList;
+    }
+
+    public void setUserPaymentList(List<UserPayment> userPaymentList) {
+        this.userPaymentList = userPaymentList;
+    }
+
+    public List<Order> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList) {
+        this.orderList = orderList;
+    }
 
     @Override
     public String toString() {

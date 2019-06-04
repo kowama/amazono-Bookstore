@@ -1,0 +1,171 @@
+<!--
+  ~ Copyright (c) 2019
+  ~ Created By : kowama
+  ~ Date :  6/3/2019
+  ~ Time : 13 : 55
+  ~ Project : bookstore
+  ~ Class : bookList.html
+  ~ Last modified : 6/3/19 1:30 PM
+  -->
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Amazon admin Panel | Book List</title>
+
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="/css/sb-admin.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+<!--navbar --->
+<nav th:replace="/admin/fragments/nav"></nav>
+<!-- End of navbar --->
+
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:replace="/admin/fragments/sidebar"></div>
+    <!-- End of Sidebar --->
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Tables</li>
+            </ol>
+
+            <!-- DataTables Example -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    Data Table Example
+                </div>
+                <div class="card-body">
+                    <!--/*@thymesVar id="books" type="java.util.List<com.kowama.bookstore.domain.Book>"*/-->
+                    <div class="table-responsive">
+                        <table class="table table-bordered w-100" id="booksDataTable">
+                            <thead>
+                            <tr>
+                                <th>Index</th>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Category</th>
+                                <th>Language</th>
+                                <th>Publisher</th>
+                                <th class="text-nowrap">Our Price</th>
+                                <th class="text-nowrap">List Price</th>
+                                <th>ISBN</th>
+                                <th>Format</th>
+                                <th>Publication Date</th>
+                                <th>Number of Page</th>
+                                <th>Shipping Weight</th>
+                                <th>Stock</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Index</th>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Category</th>
+                                <th>Language</th>
+                                <th>Publisher</th>
+                                <th class="text-nowrap">Our Price</th>
+                                <th class="text-nowrap">List Price</th>
+                                <th>ISBN</th>
+                                <th>Format</th>
+                                <th>Publication Date</th>
+                                <th>Number of Page</th>
+                                <th>Shipping Weight</th>
+                                <th>Stock</th>
+                                <th>Action</th>
+                            </tr>
+
+                            </tfoot>
+                            <tbody>
+                            <tr th:each=" book,iter:  ${books}">
+                                <td><b th:text="${iter.count}"></b></td>
+                                <td th:text="${book.title}"></td>
+                                <td th:text="${book.author}"></td>
+                                <td th:text="${book.category}"></td>
+                                <td th:text="${book.language}"></td>
+                                <td th:text="${book.publisher}"></td>
+                                <td><span th:text="${book.ourPrice}"></span> $</td>
+                                <td><span th:text="${book.listPrice}"> $</span></td>
+                                <td th:text=" ${book.isbn}"></td>
+                                <td th:text="${book.format}"></td>
+                                <td th:text="${book.publicationDate}"></td>
+                                <td th:text="${book.numberOfPages}"></td>
+                                <td th:text="${book.shippingWeight}"></td>
+                                <td th:text="${book.inStockNumber}"></td>
+                                <td class="text-nowrap">
+                                    <a class="btn btn-info" th:href="@{/admin/book/view(id = ${book.id})}">View</a>
+                                    <a class="btn btn-warning" th:href="@{/admin/book/edit(id = ${book.id})}">Edit</a>
+                                    <a class="btn btn-danger"
+                                       th:href="@{/admin/book/delete(id = ${book.id})}">Delete</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright © Your Website 2019</span>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Bootstrap core JavaScript-->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Page level plugin JavaScript-->
+<script src="/vendor/datatables/jquery.dataTables.js"></script>
+<script src="/vendor/datatables/dataTables.bootstrap4.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="/js/sb-admin.min.js"></script>
+
+<!-- Demo scripts for this page-->
+<script src="/js/demo/datatables-demo.js"></script>
+
+</body>
+
+</html>

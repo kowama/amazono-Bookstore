@@ -1,0 +1,59 @@
+/*
+ * Copyright (c) 2019
+ * Created By : kowama
+ * Date :  6/3/2019
+ * Time : 13 : 55
+ * Project : bookstore
+ * Class : jquery.easing.compatibility.js
+ * Last modified : 5/8/19 5:13 AM
+ */
+
+(function($){
+$.extend( $.easing,
+{
+	easeIn: function (x, t, b, c, d) {
+		return $.easing.easeInQuad(x, t, b, c, d);
+	},
+	easeOut: function (x, t, b, c, d) {
+		return $.easing.easeOutQuad(x, t, b, c, d);
+	},
+	easeInOut: function (x, t, b, c, d) {
+		return $.easing.easeInOutQuad(x, t, b, c, d);
+	},
+	expoin: function(x, t, b, c, d) {
+		return $.easing.easeInExpo(x, t, b, c, d);
+	},
+	expoout: function(x, t, b, c, d) {
+		return $.easing.easeOutExpo(x, t, b, c, d);
+	},
+	expoinout: function(x, t, b, c, d) {
+		return $.easing.easeInOutExpo(x, t, b, c, d);
+	},
+	bouncein: function(x, t, b, c, d) {
+		return $.easing.easeInBounce(x, t, b, c, d);
+	},
+	bounceout: function(x, t, b, c, d) {
+		return $.easing.easeOutBounce(x, t, b, c, d);
+	},
+	bounceinout: function(x, t, b, c, d) {
+		return $.easing.easeInOutBounce(x, t, b, c, d);
+	},
+	elasin: function(x, t, b, c, d) {
+		return $.easing.easeInElastic(x, t, b, c, d);
+	},
+	elasout: function(x, t, b, c, d) {
+		return $.easing.easeOutElastic(x, t, b, c, d);
+	},
+	elasinout: function(x, t, b, c, d) {
+		return $.easing.easeInOutElastic(x, t, b, c, d);
+	},
+	backin: function(x, t, b, c, d) {
+		return $.easing.easeInBack(x, t, b, c, d);
+	},
+	backout: function(x, t, b, c, d) {
+		return $.easing.easeOutBack(x, t, b, c, d);
+	},
+	backinout: function(x, t, b, c, d) {
+		return $.easing.easeInOutBack(x, t, b, c, d);
+	}
+});})(jQuery);

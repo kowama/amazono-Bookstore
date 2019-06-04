@@ -1,11 +1,11 @@
 /*
  * Copyright (c) 2019
  * Created By : kowama
- * Date :  6/1/2019
- * Time : 2 : 25
+ * Date :  6/3/2019
+ * Time : 13 : 55
  * Project : bookstore
  * Class : Book
- * Last modified : 1/5/17 7:41 PM
+ * Last modified : 6/1/19 2:29 AM
  */
 
 package com.kowama.bookstore.domain;

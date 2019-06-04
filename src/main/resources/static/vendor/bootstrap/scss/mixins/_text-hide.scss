@@ -1,0 +1,21 @@
+/*!
+ * Copyright (c) 2019
+ * Created By : kowama
+ * Date :  6/3/2019
+ * Time : 13 : 55
+ * Project : bookstore
+ * Class : _text-hide.scss
+ * Last modified : 5/8/19 5:13 AM
+ */
+
+// CSS image replacement
+@mixin text-hide($ignore-warning: false) {
+  // stylelint-disable-next-line font-family-no-missing-generic-family-keyword
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+
+  @include deprecate("`text-hide()`", "v4.1.0", "v5", $ignore-warning);
+}

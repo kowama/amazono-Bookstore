@@ -1,0 +1,18 @@
+/*!
+ * Copyright (c) 2019
+ * Created By : kowama
+ * Date :  6/3/2019
+ * Time : 13 : 55
+ * Project : bookstore
+ * Class : _align.scss
+ * Last modified : 5/8/19 5:13 AM
+ */
+
+// stylelint-disable declaration-no-important
+
+.align-baseline    { vertical-align: baseline !important; } // Browser default
+.align-top         { vertical-align: top !important; }
+.align-middle      { vertical-align: middle !important; }
+.align-bottom      { vertical-align: bottom !important; }
+.align-text-bottom { vertical-align: text-bottom !important; }
+.align-text-top    { vertical-align: text-top !important; }

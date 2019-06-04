@@ -1,0 +1,17 @@
+/*!
+ * Copyright (c) 2019
+ * Created By : kowama
+ * Date :  6/3/2019
+ * Time : 13 : 55
+ * Project : bookstore
+ * Class : _lists.scss
+ * Last modified : 5/8/19 5:13 AM
+ */
+
+// Lists
+
+// Unstyled keeps list items block level, just removes default browser padding and list-style
+@mixin list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}

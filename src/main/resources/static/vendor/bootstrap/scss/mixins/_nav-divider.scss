@@ -1,0 +1,20 @@
+/*!
+ * Copyright (c) 2019
+ * Created By : kowama
+ * Date :  6/3/2019
+ * Time : 13 : 55
+ * Project : bookstore
+ * Class : _nav-divider.scss
+ * Last modified : 5/8/19 5:13 AM
+ */
+
+// Horizontal dividers
+//
+// Dividers (basically an hr) within dropdowns and nav lists
+
+@mixin nav-divider($color: $nav-divider-color, $margin-y: $nav-divider-margin-y) {
+  height: 0;
+  margin: $margin-y 0;
+  overflow: hidden;
+  border-top: 1px solid $color;
+}

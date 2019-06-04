@@ -2,11 +2,11 @@
 <!--
   ~ Copyright (c) 2019
   ~ Created By : kowama
-  ~ Date :  5/30/2019
-  ~ Time : 10 : 22
+  ~ Date :  6/3/2019
+  ~ Time : 13 : 55
   ~ Project : bookstore
   ~ Class : pom.xml
-  ~ Last modified : 5/30/19 10:20 AM
+  ~ Last modified : 6/3/19 12:03 PM
   -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -73,7 +73,7 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--        dev-purpose-->
+        <!--dev-purpose-->
         <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
         <dependency>
             <groupId>org.webjars</groupId>

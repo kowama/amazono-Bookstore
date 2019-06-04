@@ -1,11 +1,11 @@
 /*
  * Copyright (c) 2019
  * Created By : kowama
- * Date :  5/30/2019
- * Time : 12 : 7
+ * Date :  6/3/2019
+ * Time : 13 : 55
  * Project : bookstore
- * Class : SecurityConfig
- * Last modified : 5/30/19 12:07 PM
+ * Class : SecurityConfiguration
+ * Last modified : 6/2/19 3:13 AM
  */
 
 package com.kowama.bookstore.config;
@@ -55,11 +55,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginProcessingUrl("/signin")
                 .loginPage("/").permitAll()
+                .loginPage("/admin/login").permitAll()
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .successForwardUrl("/?login")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/?logout")
+                .and()
+                .cors()
+                .and()
+                .csrf()
                 .and()
                 .rememberMe().tokenValiditySeconds(2592000).key("mySecret!").rememberMeParameter("checkRememberMe");
     }

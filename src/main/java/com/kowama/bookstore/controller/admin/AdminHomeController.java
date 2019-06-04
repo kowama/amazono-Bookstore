@@ -1,11 +1,11 @@
 /*
  * Copyright (c) 2019
  * Created By : kowama
- * Date :  6/1/2019
- * Time : 2 : 32
+ * Date :  6/3/2019
+ * Time : 13 : 55
  * Project : bookstore
- * Class : HomeController
- * Last modified : 1/5/17 8:19 PM
+ * Class : AdminHomeController
+ * Last modified : 6/1/19 9:59 PM
  */
 
 package com.kowama.bookstore.controller.admin;
@@ -29,6 +29,6 @@ public class AdminHomeController {
 
     @RequestMapping("/login")
     public String login() {
-        return "login";
+        return "admin/login";
     }
 }

@@ -1,11 +1,11 @@
 /*
  * Copyright (c) 2019
  * Created By : kowama
- * Date :  6/1/2019
- * Time : 2 : 36
+ * Date :  6/3/2019
+ * Time : 13 : 55
  * Project : bookstore
  * Class : BookServiceImpl
- * Last modified : 6/1/19 2:36 AM
+ * Last modified : 6/3/19 1:36 PM
  */
 
 package com.kowama.bookstore.service.impl;
@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -38,5 +39,10 @@ public class BookServiceImpl implements BookService {
     }
     public Page<Book> findAll(Pageable pageable){
         return _bookRepository.findAll(pageable);
+    }
+
+    @Override
+    public Optional<Book> findById(Long id) {
+        return _bookRepository.findById(id);
     }
 }

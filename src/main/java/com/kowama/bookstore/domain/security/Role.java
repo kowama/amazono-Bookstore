@@ -1,11 +1,11 @@
 /*
  * Copyright (c) 2019
  * Created By : kowama
- * Date :  5/30/2019
- * Time : 10 : 26
+ * Date :  6/3/2019
+ * Time : 13 : 55
  * Project : bookstore
  * Class : Role
- * Last modified : 5/30/19 10:26 AM
+ * Last modified : 6/2/19 7:05 PM
  */
 
 package com.kowama.bookstore.domain.security;
@@ -57,6 +57,10 @@ public class Role implements GrantedAuthority {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<User> getUsers() {
+        return users;
     }
 
     @Override

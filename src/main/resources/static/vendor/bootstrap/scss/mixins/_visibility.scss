@@ -1,0 +1,18 @@
+/*!
+ * Copyright (c) 2019
+ * Created By : kowama
+ * Date :  6/3/2019
+ * Time : 13 : 55
+ * Project : bookstore
+ * Class : _visibility.scss
+ * Last modified : 5/8/19 5:13 AM
+ */
+
+// stylelint-disable declaration-no-important
+
+// Visibility
+
+@mixin invisible($visibility) {
+  visibility: $visibility !important;
+  @include deprecate("`invisible()`", "v4.3.0", "v5");
+}

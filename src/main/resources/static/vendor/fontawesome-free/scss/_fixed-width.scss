@@ -1,0 +1,16 @@
+/*!
+ * Copyright (c) 2019
+ * Created By : kowama
+ * Date :  6/3/2019
+ * Time : 13 : 55
+ * Project : bookstore
+ * Class : _fixed-width.scss
+ * Last modified : 5/8/19 5:13 AM
+ */
+
+// Fixed Width Icons
+// -------------------------
+.#{$fa-css-prefix}-fw {
+  text-align: center;
+  width: $fa-fw-width;
+}

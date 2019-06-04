@@ -1,0 +1,30 @@
+/*!
+ * Copyright (c) 2019
+ * Created By : kowama
+ * Date :  6/3/2019
+ * Time : 13 : 55
+ * Project : bookstore
+ * Class : _bordered-pulled.scss
+ * Last modified : 5/8/19 5:13 AM
+ */
+
+// Bordered & Pulled
+// -------------------------
+
+.#{$fa-css-prefix}-border {
+  border: solid .08em $fa-border-color;
+  border-radius: .1em;
+  padding: .2em .25em .15em;
+}
+
+.#{$fa-css-prefix}-pull-left { float: left; }
+.#{$fa-css-prefix}-pull-right { float: right; }
+
+.#{$fa-css-prefix},
+.fas,
+.far,
+.fal,
+.fab {
+  &.#{$fa-css-prefix}-pull-left { margin-right: .3em; }
+  &.#{$fa-css-prefix}-pull-right { margin-left: .3em; }
+}

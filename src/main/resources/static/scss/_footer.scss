@@ -1,0 +1,37 @@
+/*!
+ * Copyright (c) 2019
+ * Created By : kowama
+ * Date :  6/3/2019
+ * Time : 13 : 55
+ * Project : bookstore
+ * Class : _footer.scss
+ * Last modified : 5/8/19 5:13 AM
+ */
+
+footer.sticky-footer {
+  display: flex;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: calc(100% - #{$sidebar-collapsed-width});
+  height: $sticky-footer-height;
+  background-color: $gray-200;
+  .copyright {
+    line-height: 1;
+    font-size: 0.8rem;
+  }
+  @media (min-width: 768px) {
+    width: calc(100% - #{$sidebar-base-width});
+  }
+}
+
+body.sidebar-toggled {
+  footer.sticky-footer {
+    width: 100%;
+  }
+  @media (min-width: 768px) {
+    footer.sticky-footer {
+      width: calc(100% - #{$sidebar-collapsed-width});
+    }
+  }
+}

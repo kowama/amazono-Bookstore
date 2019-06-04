@@ -1,11 +1,11 @@
 <!--
   ~ Copyright (c) 2019
   ~ Created By : kowama
-  ~ Date :  5/30/2019
-  ~ Time : 10 : 22
+  ~ Date :  6/3/2019
+  ~ Time : 13 : 55
   ~ Project : bookstore
   ~ Class : navbar.html
-  ~ Last modified : 5/30/19 10:20 AM
+  ~ Last modified : 6/3/19 9:39 AM
   -->
 
 <nav xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
@@ -106,8 +106,8 @@
                                         <div class="form-group">
                                             <a th:href="@{/forget-password}" class="text-warning"> Forget password ?
                                             </a><br>
-                                            <label th:if="${#request}" class="text-danger">
-                                                Invalid username and password.
+                                            <label th:if="${#request.getParameter('error')}" class="text-danger">
+                                                invalid credentials
                                             </label>
                                         </div>
                                     </div>

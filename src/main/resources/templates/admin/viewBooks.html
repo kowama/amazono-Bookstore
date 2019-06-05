@@ -60,38 +60,12 @@
                 <div class="row">
 
                     <div class="col-sm-12 col-md-3 col-lg-2">
-
+                        <!--/*@thymesVar id="categories" type="java.util.List<com.kowama.bookstore.domain.Category>"*/-->
                         <h2 class="my-2">Categories</h2>
                         <div class="list-group">
-                            <a class="list-group-item"
-                               th:href="@{/admin/books/view(category='Art,Music & Photography')}">Art,Music &
-                                Photography</a>
-                            <a class="list-group-item"
-                               th:href="@{/admin/books/view(category='Biography')}">Biography</a>
-                            <a class="list-group-item" href="Business">Business</a>
-                            <a class="list-group-item" href="Computers & Tech">Computers & Tech</a>
-                            <a class="list-group-item" href="Cooking">Cooking</a>
-                            <a class="list-group-item" href="Hobbies & Craft">Hobbies & Craft</a>
-                            <a class="list-group-item" href="Edu & Reference">Edu & Reference</a>
-                            <a class="list-group-item" href="Health & Fitness">Health & Fitness</a>
-                            <a class="list-group-item" href="History">History</a>
-                            <a class="list-group-item" href="Home & Garden">Home & Garden</a>
-                            <a class="list-group-item" href="Horror">Horror</a>
-                            <a class="list-group-item" href="Literature & Fiction">Literature & Fiction</a>
-                            <a class="list-group-item" href="Kids">Kids</a>
-                            <a class="list-group-item" href="Medical">Medical</a>
-                            <a class="list-group-item" href="Mysteries">Mysteries</a>
-                            <a class="list-group-item" href="Parenting">Parenting</a>
-                            <a class="list-group-item" href="Religion">Religion</a>
-                            <a class="list-group-item" href="Romance">Romance</a>
-                            <a class="list-group-item" href="Social Science">Social Science</a>
-                            <a class="list-group-item" href="Sport">Sport</a>
-                            <a class="list-group-item" href="Science & Math">Science & Math</a>
-                            <a class="list-group-item" href="Sci-Fi & Fantasy">Sci-Fi & Fantasy</a>
-                            <a class="list-group-item" href="Travel">Travel</a>
-                            <a class="list-group-item" href="Teen">Teen</a>
-                            <a class="list-group-item" href="Western">Western</a>
-                            <a class="list-group-item" href="Other">Other</a>
+                            <a th:each="category : ${categories}" class="list-group-item"
+                               th:href="@{/admin/books/view(category=${category.name})}"
+                               th:text="${category.name}"></a>
                         </div>
 
                     </div>
@@ -133,11 +107,16 @@
                                 </div>
 
                             </div>
-                            <!-- /book card -->
-                            <nav aria-label="Page navigation ">
+
+                        </div>
+                        <!-- /.row -->
+                        <!-- /book card -->
+                        <div class="sticky-footer  ">
+                            <nav aria-label="Page navigation my-auto ">
                                 <ul class="pagination justify-content-center">
                                     <li class="page-item disabled">
-                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                        <a class="page-link" href="#" tabindex="-1"
+                                           aria-disabled="true">Previous</a>
                                     </li>
                                     <li class="page-item"><a class="page-link" href="#">1</a></li>
                                     <li class="page-item"><a class="page-link" href="#">2</a></li>
@@ -148,7 +127,6 @@
                                 </ul>
                             </nav>
                         </div>
-                        <!-- /.row -->
 
                     </div>
                     <!-- /.col-lg-9 -->

@@ -11,6 +11,8 @@
 package com.kowama.bookstore.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,9 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @NotNull
+    @Size(min = 2, max = 126)
+    @Column(nullable = false, unique = true)
     private String name;
     private String description;
 

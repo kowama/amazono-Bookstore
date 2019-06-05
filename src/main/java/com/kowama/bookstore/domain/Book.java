@@ -30,7 +30,11 @@ public class Book {
     private String publisher;
     private String publicationDate;
     private String language;
-    private String category;
+
+    @ManyToOne(
+            cascade = {CascadeType.PERSIST, CascadeType.REFRESH},
+            fetch = FetchType.EAGER)
+    private Category category;
     private int numberOfPages;
     private String format;
     private int isbn;
@@ -98,11 +102,11 @@ public class Book {
         this.language = language;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

@@ -13,6 +13,7 @@ package com.kowama.bookstore.controller.admin;
 import com.kowama.bookstore.controller.IndexController;
 import com.kowama.bookstore.domain.Book;
 import com.kowama.bookstore.service.BookService;
+import com.kowama.bookstore.service.CategoryService;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,15 +35,18 @@ public class AdminBookController {
     private Logger LOG = Logger.getLogger(AdminBookController.class.getName());
 
     private final BookService _bookService;
+    private final CategoryService _categoryService;
 
-    public AdminBookController(BookService bookService) {
+    public AdminBookController(BookService bookService, CategoryService categoryService) {
+
         _bookService = bookService;
+        _categoryService = categoryService;
     }
 
     @GetMapping("/add")
     public String addBook(Model model) {
-        Book book = new Book();
-        model.addAttribute("book", book);
+        model.addAttribute("book", new Book());
+        model.addAttribute("categories", _categoryService.findAll());
         return "/admin/bookForm";
     }
 
@@ -55,6 +59,7 @@ public class AdminBookController {
         Pageable pageable = PageRequest.of(page, size);
         Page<Book> bookPage = _bookService.findAll(pageable);
         model.addAttribute("bookPage", bookPage);
+        model.addAttribute("categories", _categoryService.findAll());
         return "/admin/viewBooks";
     }
 
@@ -74,19 +79,19 @@ public class AdminBookController {
     @PostMapping("/add")
     public String addBookPost(@ModelAttribute("book") Book book) {
         _bookService.save(book);
-
-        MultipartFile bookImage = book.getBookImage();
-
-        try {
-            byte[] bytes = bookImage.getBytes();
-            String name = book.getId() + ".png";
-            BufferedOutputStream stream = new BufferedOutputStream(
-                    new FileOutputStream(new File("src/main/resources/static/image/books/" + name)));
-            stream.write(bytes);
-            stream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//
+//        MultipartFile bookImage = book.getBookImage();
+//
+//        try {
+//            byte[] bytes = bookImage.getBytes();
+//            String name = book.getId() + ".png";
+//            BufferedOutputStream stream = new BufferedOutputStream(
+//                    new FileOutputStream(new File("src/main/resources/static/image/books/" + name)));
+//            stream.write(bytes);
+//            stream.close();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         return "redirect:/admin/book/list";
     }
